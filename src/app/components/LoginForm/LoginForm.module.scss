@@ -1,0 +1,101 @@
+.login-main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .login-section {
+        width: 450px;
+        height: fit-content;
+        border: 1px solid rgb(168, 168, 168);
+        padding: 60px 30px;
+        border-radius: 10px;
+        .login-img-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin-bottom: 50px;
+            .login-logo-hesabat{
+                width: 100px;
+                height: 100px;
+            }
+            .login-logo-aztu{
+                width: 150px;
+                height: 75px;
+            }
+        }
+        .login-form-container{
+            width: 100%;
+            h1{
+                // color: rgb(141, 141, 141);
+                color: black;
+                text-align: center;
+                margin-bottom: 40px;
+            }
+            form{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                div{
+                    width: 80%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    height: fit-content;
+                    input{
+                        border: 1px solid rgba(0, 0, 0, 0.1);
+                        border-radius: 5px;
+                        width: 100%;
+                        height: 40px;
+                        outline: none;
+                        padding-inline: 10px;
+                        font-size: 16px;
+                        transition: all 400ms;
+                        &:first-child{
+                            margin-bottom: 20px;
+                        }
+                        &:focus{
+                            border-color: #1089ff;
+                        }
+                        &:focus+.input-placeholder,
+                        &:valid+.input-placeholder{
+                            transform: translate(10px, -25px);
+                            background: #1089ff;
+                            color: #fff;
+                            padding: 2px 5px;
+                            border-radius: 5px;
+                        }
+                    }
+                    div{
+                        position: absolute;
+                        top: 10px;
+                        left: 10px;
+                        width: fit-content;
+                        transition: all 400ms;
+                        // display: none;
+                    }
+                }
+                button{
+                    margin-top: 40px;
+                    width: 80%;
+                    height: 40px;
+                    border: 1px solid #1089ff;
+                    border-radius: 5px;
+                    background: #1089ff;
+                    color: #fff;
+                    font-size: 17px;
+                    cursor: pointer;
+                    transition: all 400ms;
+                    &:hover{
+                        background: transparent;
+                        color: #1089ff  ;
+                    }
+                }
+            }
+        }
+    }
+}

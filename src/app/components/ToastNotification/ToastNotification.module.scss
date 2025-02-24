@@ -1,0 +1,43 @@
+.toast {
+    position: fixed;
+    top: -100px; /* Start above the screen */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1089ff;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.02s ease-out;
+    animation: slideInOut 7s ease-in-out forwards; /* Total duration 7 seconds */
+  }
+  
+  .show {
+    opacity: 1;
+  }
+  
+  .hide {
+    opacity: 0;
+  }
+  
+  /* Animation to slide the toast from top to top, disappearing after 5 seconds */
+  @keyframes slideInOut {
+    0% {
+      top: -100px; /* Start above the screen */
+      opacity: 0;
+    }
+    20% {
+      top: 20px; /* Final position while showing (immediate slide-in) */
+      opacity: 1;
+    }
+    80% {
+      top: 20px; /* Stay visible at the final position for 5 seconds */
+      opacity: 1;
+    }
+    100% {
+      top: -100px; /* Slide back out to the top */
+      opacity: 0;
+    }
+  }

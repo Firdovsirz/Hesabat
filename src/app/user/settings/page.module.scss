@@ -1,0 +1,85 @@
+@import "../../../styles/variables";
+
+.user-settings-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100vh;
+
+    .user-settings-main {
+        width: 100%;
+        height: 100%;
+        padding: 50px;
+        position: relative;
+
+        .user-settings-head-txt-section {
+            margin-bottom: 30px;
+
+            h1 {
+                font-size: 35px;
+                color: rgb(165, 165, 165);
+                margin-bottom: 10px;
+            }
+
+            p {
+                color: rgb(88, 88, 88);
+            }
+        }
+
+        .user-settings-user-details {
+            width: 100%;
+
+            div {
+                border: 1px solid $primary-blue-color;
+                padding: 30px;
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                margin-block: 20px;
+
+                .user-set-icons {
+                    color: $primary-blue-color ;
+                    font-size: 30px
+                }
+
+                p {
+                    margin-left: 20px;
+                    font-size: 20px;
+                }
+            }
+        }
+
+        .user-set-log-out {
+            display: flex;
+            align-items: center;
+            border: 1px solid rgb(165, 165, 165);
+            border-radius: 10px;
+            position: absolute;
+            bottom: 50px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: all 400ms;
+
+            &:hover {
+                border-color: $primary-blue-color;
+
+                .user-set-log-out-icon {
+                    color: $primary-blue-color;
+                }
+            }
+
+            .user-set-log-out-icon {
+                color: rgb(165, 165, 165);
+                font-size: 30px;
+                transition: all 400ms;
+            }
+
+            p {
+                margin-left: 20px;
+                font-size: 20px;
+            }
+        }
+    }
+}

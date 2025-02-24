@@ -1,0 +1,34 @@
+.token-error-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+
+    div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 2px 2px 10px rgb(201, 201, 201);
+        padding: 10px 50px;
+        border-radius: 10px;
+
+        .token-error-line {
+            width: 80px;
+            background: rgb(201, 201, 201);
+            height: 3px;
+            padding: 0;
+            rotate: 90deg;
+        }
+
+        .token-error-warning-img {
+            width: 100px;
+            height: 100px;
+            margin-right: 5px;
+        }
+
+        p {
+            font-size: 20px;
+        }
+    }
+}
