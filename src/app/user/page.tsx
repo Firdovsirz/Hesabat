@@ -6,13 +6,13 @@ import { logout } from "@/redux/authSlice";
 import styles from "./page.module.scss";
 import React, { useEffect } from 'react';
 import { RootState } from '@/redux/store';
-import { useDispatch, UseDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/navigation';
 import AztuLogo from "@/../public/assets/aztu-logo.png";
 import UserAside from '../components/UserAside/UserAside';
+import TokenError from '../components/TokenError/TokenError'; // maybe will be used instead of directing to the login page
 import HesabatLogo from "@/../public/assets/hesabat-logo.jpg";
+import { useDispatch, UseDispatch, useSelector } from 'react-redux';
 import ToastNotification from '../components/ToastNotification/ToastNotification';
-import { useRouter } from 'next/navigation';
-import TokenError from '../components/TokenError/TokenError';
 
 export default function dekan() {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ export default function dekan() {
         const expirationTime = decodedToken.exp * 1000;
         const currentTime = Date.now();
         if (currentTime >= expirationTime) {
-          dispatch(logout()); // ✅ Dispatch logout action
+          dispatch(logout());
           router.push("/");
         }
       } catch (error) {

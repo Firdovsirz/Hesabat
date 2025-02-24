@@ -7,6 +7,7 @@
     position: relative;
     transition: all 400ms;
     display: block;
+    // overflow-y: scroll;
 
     .menu-icon {
         font-size: 30px;
@@ -85,6 +86,99 @@
 
                 .user-aside-home-icon {
                     color: #fff;
+                }
+            }
+        }
+    }
+
+    .user-aside-home-icon-container {
+        margin-top: 40px;
+        width: 100%;
+        transition: all 400ms;
+        padding: 5px 10px;
+        cursor: pointer;
+
+        &:hover {
+            background: #1089ff;
+            border-radius: 10px 0 0 10px;
+        }
+
+        &:hover {
+            .user-aside-kafedra-dropdown-txt {
+                .user-aside-kafedra-icon-container {
+                    .user-aside-kafedra-icon {
+                        color: #fff;
+                    }
+
+                    p {
+                        color: #fff;
+                    }
+                }
+
+                .user-aside-kafedra-dropdown-icon {
+                    color: #fff;
+                }
+            }
+
+            .user-aside-kafedra-dropdown {
+                .user-aside-kafedra-link {
+                    .user-aside-kafedra-txt {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+
+        .user-aside-kafedra-dropdown-txt {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .user-aside-kafedra-icon-container {
+                display: flex;
+                align-items: center;
+
+                .user-aside-kafedra-icon {
+                    font-size: 40px;
+                    margin-right: 20px;
+                    transition: all 400ms;
+                    color: rgb(165, 165, 165);
+                }
+
+                p {
+                    font-size: 17px;
+                    transition: all 400ms;
+                    color: rgb(165, 165, 165);
+                }
+            }
+
+            .user-aside-kafedra-dropdown-icon {
+                font-size: 30px;
+                transition: all 400ms;
+                color: rgb(165, 165, 165);
+            }
+        }
+
+        .user-aside-kafedra-dropdown {
+            display: flex;
+            flex-direction: column;
+            transform: translateX(20px);
+
+            .user-aside-kafedra-link {
+                text-decoration: none;
+
+                .user-aside-kafedra-txt {
+                    width: 200px;
+                    margin-block: 20px;
+                    color: rgb(165, 165, 165);
+                    transition: all 400ms;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    &:hover {
+                        transform: translateX(10px);
+                    }
                 }
             }
         }

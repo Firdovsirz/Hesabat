@@ -13,10 +13,10 @@ import HesabatLogo from "../../../../public/assets/hesabat-logo.jpg";
 
 export default function LoginForm() {
     const [visibility, setVisibility] = useState(false);
-    const [username, setUsername] = useState(""); // User input for username
-    const [password, setPassword] = useState(""); // User input for password
-    const dispatch = useDispatch(); // Initialize dispatch from Redux
-    const router = useRouter(); // Router to navigate after successful login
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const dispatch = useDispatch();
+    const router = useRouter();
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -27,32 +27,38 @@ export default function LoginForm() {
                 username,
                 password,
             });
-
             const data = response.data;
-
-            // Check if login is successful and we get the token
             if (response.status === 200 && data.token) {
-                // Dispatch the login action with token and role
                 dispatch(login({ token: data.token, role: data.role, username: data.username }));
                 console.log(data.token);
-
-                // Redirect the user to the user page
                 router.push('/user');
+            } else if (response.status === 401) {
+                Swal.fire({
+                    title: "Uğursuz cəhd",
+                    text: "İstifadəçi adı və ya parol yanlışdır.",
+                    icon: "error",
+                });
             } else {
-                // Show error if login fails
                 Swal.fire({
                     title: "Uğursuz cəhd",
                     text: data.error || "İstifadəçi adı və ya parol yanlışdır.",
                     icon: "error",
                 });
             }
-        } catch (error) {
-            // Show error if there’s an issue with the request
-            Swal.fire({
-                title: "Xəta baş verdi",
-                text: "Serverlə əlaqə qurulmadı.",
-                icon: "error",
-            });
+        } catch (error: any) {
+            if (error.response && error.response.status === 401) {
+                Swal.fire({
+                    title: "Uğursuz cəhd",
+                    text: "İstifadəçi adı və ya parol yanlışdır.",
+                    icon: "error",
+                });
+            } else {
+                Swal.fire({
+                    title: "Xəta baş verdi",
+                    text: "Serverlə əlaqə qurulmadı.",
+                    icon: "error",
+                });
+            }
         }
     };
 
@@ -71,7 +77,7 @@ export default function LoginForm() {
                                 type="text"
                                 value={username}
                                 required
-                                onChange={(e) => setUsername(e.target.value)} // Update username state
+                                onChange={(e) => setUsername(e.target.value)}
                             />
                             <div className={styles['input-placeholder']}>İstifadəçi adı</div>
                         </div>
@@ -80,7 +86,7 @@ export default function LoginForm() {
                                 type={visibility ? "text" : "password"}
                                 required
                                 value={password}
-                                onChange={(e) => setPassword(e.target.value)} // Update password state
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                             <div className={styles['input-placeholder']}>Parol</div>
                         </div>
