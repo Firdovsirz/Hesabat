@@ -7,7 +7,6 @@
     position: relative;
     transition: all 400ms;
     display: block;
-    // overflow-y: scroll;
 
     .menu-icon {
         font-size: 30px;
@@ -124,6 +123,21 @@
                 .user-aside-kafedra-link {
                     .user-aside-kafedra-txt {
                         color: #fff;
+                        position: relative;
+                        &:after{
+                            content: "";
+                            position: absolute;
+                            top: 40%;
+                            left: -10px;
+                            width: 4px;
+                            height: 4px;
+                            background: #fff;
+                            border-radius: 50%;
+                            opacity: 0;
+                        }
+                        &:hover:after{
+                            opacity: 1;
+                        }
                     }
                 }
             }
@@ -186,6 +200,9 @@
 
     .user-aside-settings-link {
         text-decoration: none;
+        position: absolute;
+        bottom: 50px;
+        width: 100%;
 
         .user-aside-settings-icon-container {
             display: flex;
@@ -194,8 +211,7 @@
             transition: all 400ms;
             padding: 5px 10px;
             cursor: pointer;
-            position: absolute;
-            bottom: 50px;
+
 
             &:hover {
                 background: #1089ff;

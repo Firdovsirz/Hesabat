@@ -15,18 +15,29 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
-export default function UserAside() {
+interface AsideProp {
+    kafedra: string | any;
+}
+
+export default function UserAside(kafedra: AsideProp) {
     const [isOpen, setIsOpen] = useState<boolean>(true);
     const toggleMenu = () => setIsOpen(!isOpen);
     const pathname = usePathname();
     const [home, setHome] = useState(false);
     const [settings, setSettings] = useState(false);
-    const [kafedralar, setKafedralar] = useState<string[]>([]);
+    const [kafedralar, setKafedralar] = useState<{ kafedra_adi: string; kafedra_kodu: string }[]>([]);
     const [vezifeKodu, setVezifeKodu] = useState<string | null>(null);
     const [kafedraDropdown, setKafedraDropdown] = useState<boolean | null>(false);
     const username = useSelector((state: RootState) => state.auth.username);
     const [userAd, setUserAd] = useState<string | null>("");
     const [userSoyad, setUserSoyad] = useState<string | null>("");
+    const [kafedraName, setkafedraName] = useState<string | null>("");
+
+    const handleKafedraNameFromAside = (kafedra: string | null): void => {
+        setkafedraName(kafedra);
+        console.log(kafedra);
+
+    }
 
     useEffect(() => {
         if (pathname === '/user') {
@@ -70,14 +81,20 @@ export default function UserAside() {
         const fetchKafedralar = async (fakulteKodu: string) => {
             try {
                 const response = await apiClient.get(`/kafedra_as_fac/${fakulteKodu}`);
-                console.log("Kafedra response:", response);
 
                 if (response.status < 200 || response.status >= 300) {
                     throw new Error('Failed to fetch kafedralar');
                 }
 
                 const data = response.data;
-                setKafedralar(data.map((item: { kafedra_adi: string }) => item.kafedra_adi));
+
+                // ✅ Ensure kafedralar is an array of objects
+                setKafedralar(
+                    data.map((item: { kafedra_adi: string; kafedra_kodu: string }) => ({
+                        kafedra_adi: item.kafedra_adi,
+                        kafedra_kodu: item.kafedra_kodu,
+                    }))
+                );
             } catch (error) {
                 console.error("Error fetching kafedralar:", error);
             }
@@ -85,6 +102,8 @@ export default function UserAside() {
 
         fetchUserDetails();
     }, []);
+    // console.log(`kafedralar: ${kafedralar[0]}`);
+
 
     return (
         <aside
@@ -113,17 +132,6 @@ export default function UserAside() {
                     <p style={home ? { color: "#fff" } : {}}>Əsas</p>
                 </div>
             </Link>
-
-            {/* {kafedralar.length > 0 && (
-                <div className={styles['user-aside-kafedralar']}>
-                    <h2>Kafedralar:</h2>
-                    <ul>
-                        {kafedralar.map((kafedra, index) => (
-                            <li key={index}>{kafedra}</li>
-                        ))}
-                    </ul>
-                </div>
-            )} */}
             {kafedralar.length > 0 && (
                 <div
                     className={styles['user-aside-home-icon-container']}
@@ -141,17 +149,21 @@ export default function UserAside() {
                     </div>
                     {kafedraDropdown && isOpen ? (
                         <div className={styles['user-aside-kafedra-dropdown']}>
-                            {kafedralar.map((kafedra) => {
+                            {kafedralar.map((kafedra, index) => {
                                 return (
-                                    <Link href={""} className={styles['user-aside-kafedra-link']}>
+                                    <Link
+                                        href={`/user/kafedra/${kafedra.kafedra_kodu}`}
+                                        className={styles['user-aside-kafedra-link']}
+                                        key={index}
+                                    >
                                         <div
                                             className={styles['user-aside-kafedra-txt']}
+                                            onClick={() => handleKafedraNameFromAside(kafedra.kafedra_kodu)}
                                         >
-                                            {kafedra}
-                                            <ArrowDropDownIcon />
+                                            <p>{kafedra.kafedra_adi}</p>
                                         </div>
                                     </Link>
-                                )
+                                );
                             })}
                         </div>
                     ) : null}

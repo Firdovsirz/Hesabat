@@ -11,7 +11,7 @@
     z-index: 9999;
     opacity: 1;
     transition: opacity 0.02s ease-out;
-    animation: slideInOut 7s ease-in-out forwards; /* Total duration 7 seconds */
+    animation: slideInOut 4s ease-in-out forwards;
   }
   
   .show {
@@ -22,22 +22,21 @@
     opacity: 0;
   }
   
-  /* Animation to slide the toast from top to top, disappearing after 5 seconds */
   @keyframes slideInOut {
     0% {
-      top: -100px; /* Start above the screen */
+      top: -100px;
       opacity: 0;
     }
     20% {
-      top: 20px; /* Final position while showing (immediate slide-in) */
+      top: 20px;
       opacity: 1;
     }
     80% {
-      top: 20px; /* Stay visible at the final position for 5 seconds */
+      top: 20px;
       opacity: 1;
     }
     100% {
-      top: -100px; /* Slide back out to the top */
+      top: -100px;
       opacity: 0;
     }
   }

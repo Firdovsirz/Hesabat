@@ -1,0 +1,89 @@
+@import "../../../../styles/variables";
+
+.slug-page-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100vw;
+    height: 100svh;
+
+    h1 {
+        color: rgb(165, 165, 165);
+    }
+
+    .kafedra-page-main {
+        padding: 50px;
+        width: 100%;
+
+        h1 {
+            color: rgb(165, 165, 165);
+            margin-bottom: 10px;
+        }
+
+        .kafedra-muduru-section {
+            width: 100%;
+
+            h2 {
+                color: rgb(165, 165, 165);
+                margin-block: 20px;
+            }
+
+            .kafedra-muduru-container {
+                width: 100%;
+                border: 1px solid rgb(165, 165, 165);
+                border-radius: 10px;
+                padding: 20px;
+                transition: all 400ms;
+                cursor: pointer;
+                margin-bottom: 20px;
+
+                p {
+                    margin-block: 10px;
+                    color: rgb(86, 86, 86);
+
+                    strong {
+                        color: $primary-blue-color;
+                        margin-right: 20px;
+                    }
+                }
+
+                &:hover {
+                    border-color: $primary-blue-color;
+                }
+            }
+        }
+
+        .kafedra-teacher-section {
+            width: 100%;
+
+            h2 {
+                color: rgb(165, 165, 165);
+                margin-bottom: 20px;
+            }
+
+            .muellim-item {
+                width: 100%;
+                border: 1px solid rgb(165, 165, 165);
+                border-radius: 10px;
+                padding: 20px;
+                transition: all 400ms;
+                cursor: pointer;
+                margin-bottom: 20px;
+
+                p {
+                    margin-block: 10px;
+                    color: rgb(86, 86, 86);
+
+                    strong {
+                        color: $primary-blue-color;
+                        margin-right: 20px;
+                    }
+                }
+
+                &:hover {
+                    border-color: $primary-blue-color;
+                }
+            }
+        }
+    }
+}

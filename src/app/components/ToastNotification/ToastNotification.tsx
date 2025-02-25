@@ -11,12 +11,10 @@ export default function ToastNotification({ message }: ToastProps) {
     const [visible, setVisible] = useState(true);
 
     useEffect(() => {
-        // Set a timer to hide the toast after 2 seconds
         const timer = setTimeout(() => {
-            setVisible(false); // Hide toast after 2 seconds
-        }, 10000);
+            setVisible(false);
+        }, 5000);
 
-        // Cleanup the timer when component unmounts
         return () => clearTimeout(timer);
     }, []);
 

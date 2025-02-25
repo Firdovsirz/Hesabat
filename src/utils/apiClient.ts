@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { RootState, store } from '@/redux/store';
 
-const API_BASE_URL = 'http://127.0.0.1:5000';
+const API_BASE_URL = 'http://127.0.0.1:5001';
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -22,4 +22,4 @@ apiClient.interceptors.request.use(
   }
 );
 
-export default apiClient;
+export default apiClient; 

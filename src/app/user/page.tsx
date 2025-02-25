@@ -2,14 +2,14 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { logout } from "@/redux/authSlice";
 import styles from "./page.module.scss";
 import React, { useEffect } from 'react';
 import { RootState } from '@/redux/store';
+import { logout } from "@/redux/authSlice";
 import { useRouter } from 'next/navigation';
 import AztuLogo from "@/../public/assets/aztu-logo.png";
 import UserAside from '../components/UserAside/UserAside';
-import TokenError from '../components/TokenError/TokenError'; // maybe will be used instead of directing to the login page
+import TokenError from '../components/TokenError/TokenError';
 import HesabatLogo from "@/../public/assets/hesabat-logo.jpg";
 import { useDispatch, UseDispatch, useSelector } from 'react-redux';
 import ToastNotification from '../components/ToastNotification/ToastNotification';
@@ -45,7 +45,7 @@ export default function dekan() {
     <>
       <ToastNotification message='Hesabat sisteminə xoş gəlmisiniz!' />
       <div className={styles['user-container']}>
-        <UserAside />
+        <UserAside kafedra={null}/>
         <main className={styles['user-home-main']}>
           <section className={styles['user-home-section']}>
             <h1>Plan Hesabat İnformasiya Sistemi</h1>
