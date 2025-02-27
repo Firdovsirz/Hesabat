@@ -25,6 +25,7 @@ export default function UserAside(kafedra: AsideProp) {
     const pathname = usePathname();
     const [home, setHome] = useState(false);
     const [settings, setSettings] = useState(false);
+    const [kafedraPath, setKafedraPath] = useState(false);
     const [kafedralar, setKafedralar] = useState<{ kafedra_adi: string; kafedra_kodu: string }[]>([]);
     const [vezifeKodu, setVezifeKodu] = useState<string | null>(null);
     const [kafedraDropdown, setKafedraDropdown] = useState<boolean | null>(false);
@@ -46,6 +47,10 @@ export default function UserAside(kafedra: AsideProp) {
         } else if (pathname === '/user/settings') {
             setSettings(true);
             setHome(false);
+        } else if (pathname.split("/")[2] === 'kafedra') {
+            setSettings(false);
+            setHome(false);
+            setKafedraPath(true);
         }
     }, [pathname]);
     const handleKafedraDropdown = (): void => {
@@ -88,7 +93,6 @@ export default function UserAside(kafedra: AsideProp) {
 
                 const data = response.data;
 
-                // ✅ Ensure kafedralar is an array of objects
                 setKafedralar(
                     data.map((item: { kafedra_adi: string; kafedra_kodu: string }) => ({
                         kafedra_adi: item.kafedra_adi,
@@ -102,8 +106,6 @@ export default function UserAside(kafedra: AsideProp) {
 
         fetchUserDetails();
     }, []);
-    // console.log(`kafedralar: ${kafedralar[0]}`);
-
 
     return (
         <aside
@@ -119,7 +121,6 @@ export default function UserAside(kafedra: AsideProp) {
                 <AccountCircleIcon className={styles['user-aside-profile-icon']} />
                 <div className={styles['user-aside-pr-txt']}>
                     <h1>{userAd} {userSoyad}</h1>
-                    {/* <p>Vəzifə Kodu: {vezifeKodu || "Yüklənir..."}</p> */}
                 </div>
             </div>
 
@@ -135,16 +136,16 @@ export default function UserAside(kafedra: AsideProp) {
             {kafedralar.length > 0 && (
                 <div
                     className={styles['user-aside-home-icon-container']}
-                // style={home ? { background: "#1089ff", borderRadius: "10px 0 0 10px" } : {}}
+                    style={kafedraPath ? { background: "#1089ff", borderRadius: "10px 0 0 10px" } : {}}
                 >
                     <div className={styles['user-aside-kafedra-dropdown-txt']} onClick={handleKafedraDropdown}>
                         <div className={styles['user-aside-kafedra-icon-container']}>
-                            <SchoolIcon className={styles['user-aside-kafedra-icon']} />
-                            <p>Kafedralar</p>
+                            <SchoolIcon className={styles['user-aside-kafedra-icon']} style={kafedraPath ? { color: "#fff" } : {}}/>
+                            <p style={kafedraPath ? { color: "#fff" } : {}}>Kafedralar</p>
                         </div>
                         <ArrowDropDownIcon
                             className={styles['user-aside-kafedra-dropdown-icon']}
-                            style={kafedraDropdown ? { rotate: "180deg" } : {}}
+                            style={kafedraDropdown ? { rotate: "180deg", color: "#fff" } : kafedraPath  ? { color: "#fff"   } : {}}
                         />
                     </div>
                     {kafedraDropdown && isOpen ? (
@@ -175,7 +176,7 @@ export default function UserAside(kafedra: AsideProp) {
                     style={settings ? { background: '#1089ff', borderRadius: "10px 0 0 10px" } : {}}
                 >
                     <SettingsIcon className={styles['user-aside-settings-icon']} style={settings ? { color: "#fff" } : {}} />
-                    <p style={settings ? { color: "#fff" } : {}}>Sazlamalar</p>
+                    <p style={settings ? { color: "#fff" } : {}}>Şəxsi məlumatlar</p>
                 </div>
             </Link>
 

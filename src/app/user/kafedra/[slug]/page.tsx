@@ -71,7 +71,10 @@ export default function Page({ params }: ParamsProp) {
             }
 
             const data = response.data;
+            console.log(data);
+            
             setKafedraName(data[0]?.kafedra_adi || "Məlumat tapılmadı");
+            console.log(kafedraName);
         } catch (error) {
             console.error("Error fetching kafedralar:", error);
             setError("Kafedra məlumatı yüklənmədi.");
@@ -110,20 +113,14 @@ export default function Page({ params }: ParamsProp) {
             <UserAside kafedra={kafedraName} />
             <main className={styles["kafedra-page-main"]}>
                 <h1>Kafedranın vəzifəli şəxsləri</h1>
-                {loading ? (
-                    <p>Yüklənir...</p>
-                ) : error ? (
-                    <p style={{ color: "red" }}>{error}</p>
-                ) : (
-                    <p>{kafedraName}</p>
-                )}
+                <p style={{color: "rgb(165, 165, 165)", fontSize: 20, marginBottom: 30}}>{kafedraName}</p>
 
                 {kafedraMuduru && kafedraMuduru.length > 0 && (
                     <section className={styles['kafedra-muduru-section']}>
                         <h2>Kafedra Müdürü :</h2>
-                        {kafedraMuduru?.map((item) => {
+                        {kafedraMuduru?.map((item, index) => {
                             return (
-                                <div className={styles['kafedra-muduru-container']}>
+                                <div className={styles['kafedra-muduru-container']} key={index}>
                                     <p><strong>Ad, Soyad, Ata Adı:</strong> {item.ad} {item.soyad} {item.ata_adi}</p>
                                     <p><strong>Vəzifə:</strong> {item.vezife_adi}</p>
                                 </div>

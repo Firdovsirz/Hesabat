@@ -1,3 +1,5 @@
+@import "../../styles/variables";
+
 .user-container {
     display: flex;
     align-items: flex-start;
@@ -14,26 +16,89 @@
             width: 100%;
             height: 100%;
 
-            h1 {
-                color: rgb(165, 165, 165);
-            }
+            // h1 {
+            //     color: rgb(165, 165, 165);
+            // }
 
-            .user-home-img-container {
-                display: flex;
-                align-items: center;
-                justify-content: center;
+            // .user-home-img-container {
+            //     display: flex;
+            //     align-items: center;
+            //     justify-content: center;
+            //     width: 100%;
+            //     height: 100%;
+
+            //     .user-hesabat-image {
+            //         width: 150px;
+            //         height: 150px;
+            //         margin-right: 50px;
+            //     }
+
+            //     .user-aztu-image {
+            //         width: 300px;
+            //         height: 150px;
+            //     }
+            // }
+            .user-account-container {
                 width: 100%;
                 height: 100%;
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
 
-                .user-hesabat-image {
-                    width: 150px;
-                    height: 150px;
-                    margin-right: 50px;
-                }
+                div {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
 
-                .user-aztu-image {
-                    width: 300px;
-                    height: 150px;
+                    h2 {
+                        margin-bottom: 50px;
+                    }
+
+                    .user-account-table-container {
+                        table {
+                            border: 1px solid $primary-blue-color;
+                            border-collapse: collapse;
+                            thead{
+                                border-bottom: 1px solid $primary-blue-color;
+                                tr{
+                                    th{
+                                        padding: 20px;
+                                        &:first-child{
+                                            width: 10px;
+                                        }
+                                        &:not(:last-child){
+                                            border-right: 1px solid $primary-blue-color;
+                                        }
+                                    }
+                                }
+                            }
+                            tbody{
+                                tr{
+                                    &:not(:last-child){
+                                        border-bottom: 1px solid $primary-blue-color;
+                                    }
+                                    td{
+                                        &:first-child{
+                                            width: 10px;
+                                        }
+                                        // padding: 20px;
+                                        &:not(:last-child){
+                                            border-right: 1px solid $primary-blue-color;
+                                        }
+                                        input{
+                                            width: 100%;
+                                            height: 100%;
+                                            border: none;
+                                            outline: none;
+                                            padding: 20px;
+                                            font-size: 20px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
